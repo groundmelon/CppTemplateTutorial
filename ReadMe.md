@@ -557,7 +557,7 @@ template <float a> class E {}; // ERROR: 别闹！早说过只能是整数类型
 
 技术的学习是一个登山的过程。第一章是最为平坦的山脚道路。而从这一章开始，则是正式的爬坡。无论是我写作还是你阅读，都需要付出比第一章更多的代价。那么问题就是，付出更多的精力学习模板是否值得？
 
-这个问题很功利，但是一阵见血。因为技术的根本目的在于解决需求。那C++的模板能做什么？
+这个问题很功利，但是一针见血。因为技术的根本目的在于解决需求。那C++的模板能做什么？
 
 一个高（树）大（新）上（蜂）的回答是，C++里面的模板，犹如C中的宏、C#和Java中的自省（restropection）和反射（reflection）一样，是一个改变语言内涵，拓展语言外延的存在。
 
@@ -579,11 +579,11 @@ template <float a> class E {}; // ERROR: 别闹！早说过只能是整数类型
 class StackInt
 {
 public:
-    void push(Int v);
-    Int pop();
-    Int Find(Int x)
+    void push(int v);
+    int pop();
+    int Find(int x)
     {
-        for(Int i = 1; i <= size; )
+        for(int i = 0; i < size; ++i)
         {
             if(data[i] == x) { return i; }
         }
@@ -598,11 +598,11 @@ public:
 class StackFloat
 {
 public:
-    void push(Float v);
-    Float pop();
-    Int Find(Float x)
+    void push(float v);
+    float pop();
+    float Find(float x)
     {
-        for(Int i = 1; i <= size; )
+        for(int i = 0; i < size; ++i)
         {
             if(data[i] == x) { return i; }
         }
@@ -634,9 +634,9 @@ class Stack
 public:
     void push(T v);
     T pop();
-    Int Find(T x)
+    T Find(T x)
     {
-        for(Int i = 0; i <= size; ++i)
+        for(int i = 0; i < size; ++i)
         {
             if(data[i] == x) { return i; }
         }
@@ -2106,7 +2106,7 @@ void foo(T t, typename U::type u) {
 }
 
 void callFoo() {
-  foo<int, X>(5, 5.0); // T == int, typename U::type == X::type == int
+  foo<int, X>(5, 5.0); // T == int, typename U::type == X::type == float
 }
 ```
 
@@ -2127,7 +2127,7 @@ void foo(T t, typename U::type u) {
 }
 
 void callFoo() {
-  foo<int, X>(5, 5.0); // T == int, typename U::type == X::type == int
+  foo<int, X>(5, 5.0); // T == int, typename U::type == X::type == float
   foo<int, Y>(5, 5.0); // ???
 }
 ```
@@ -2165,7 +2165,7 @@ void foo(T t, typename U::type2 u) {
   // ...
 } 
 void callFoo() {
-  foo<int, X>(5, 5.0); // T == int, typename U::type == X::type == int
+  foo<int, X>(5, 5.0); // T == int, typename U::type == X::type == float
   foo<int, Y>( 1, 1.0 ); // ???
 }
 ```
@@ -2511,7 +2511,7 @@ void doSomething() {
 template <typename ArgT> void foo(ArgT&& a);
 ```
 
-加入我们要限定ArgT只能是 float 的衍生类型，那么写成下面这个样子是不对的，它实际上只能接受 float 的右值引用。
+假如我们要限定ArgT只能是 float 的衍生类型，那么写成下面这个样子是不对的，它实际上只能接受 float 的右值引用。
 
 ```C++
 void foo(float&& a);
